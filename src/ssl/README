@@ -1,0 +1,10 @@
+File cacerts.pem is the list of certificate authorities we will trust (for example when 
+connecting to RabbitMQ). I just grabbed this file from a recent CentOS 7.5 box (it came 
+from /etc/pki/ca-trust/extracted/openssl/ca-bundle.trust.crt).
+	
+The certs subfolder contains certificates and keys for each stack. The developer ones 
+(cert.DEVELOPER.pem and key.DEVELOPER.pem) are a certificate and corresponding key I just 
+copied from another application (in this case the certificate I generated for Oracle 
+Cloud testing). The browser will complain because the domain name won't match, but this 
+was an easy test of SSL.	
+	
