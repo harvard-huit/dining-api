@@ -19,12 +19,12 @@ class Health(Resource):
         conn = pyodbc.connect(common.db_connection_string)
        
         cursor = conn.cursor()
-        cursor.execute("SELECT TOP (10) Location_Number FROM foodpro.dbo.Locations")        
+        #cursor.execute("SELECT TOP (10) Location_Number FROM foodpro.dbo.Locations")
+        cursor.execute("SELECT TOP (10) Location_Number FROM Locations")        
 
         retStr = ""
         while True:
-            row = cursor.fetchone()
-            
+            row = cursor.fetchone()            
             if row == None:
                 break
             else:
@@ -34,7 +34,7 @@ class Health(Resource):
         return retStr
 
 @api.route('/monitor/driver')
-class HealthTest(Resource):
+class Driver(Resource):
     def get(self):
         return pyodbc.drivers()
 
@@ -53,7 +53,7 @@ class Locations(Resource):
    
         locations = []
         cursor = conn.cursor()
-        cursor.execute("select l.location_number, l.location_name from foodpro.dbo.locations as l")        
+        cursor.execute("select l.location_number, l.location_name from locations as l")        
 
         for row in cursor:                
             #this creates a dict out of the array of values
@@ -83,8 +83,8 @@ class Events(Resource):
         cursor = conn.cursor()
         cursor.execute("""select f.meal_name,l.location_number,l.location_name,
         f.serve_date,f.menu_category_name,f.menu_category_number,f.meal_number
-        from foodpro.dbo.forecastedrecipes as f
-        join foodpro.dbo.locations as l on f.location_number = l.location_number
+        from forecastedrecipes as f
+        join locations as l on f.location_number = l.location_number
         where 1=1
         group by f.meal_name, l.location_number, l.location_name, f.serve_date, f.meal_number, f.menu_category_name, f.menu_category_number
         order by l.location_number""")        
@@ -156,8 +156,8 @@ class Recipes(Resource):
         f.Protein,
         f.Protein_DV,
         f.Update_Date
-        from foodpro.dbo.ForecastedRecipes as f
-        join foodpro.dbo.Locations as l on l.location_number = f.location_number
+        from ForecastedRecipes as f
+        join Locations as l on l.location_number = f.location_number
         """)        
 
         for row in cursor:                
@@ -227,8 +227,8 @@ class Recipe(Resource):
         f.Protein,
         f.Protein_DV,
         f.Update_Date
-        from foodpro.dbo.ForecastedRecipes as f
-        join foodpro.dbo.Locations as l on l.location_number = f.location_number where f.ID =  :myID
+        from ForecastedRecipes as f
+        join Locations as l on l.location_number = f.location_number where f.ID =  :myID
         """, myID=id)
 
         for row in cursor:                
