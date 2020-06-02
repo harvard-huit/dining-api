@@ -170,8 +170,7 @@ class Recipes(Resource):
 
 @api.route('/recipe/<string:id>')
 class Recipe(Resource):
-    def get(self, id):
-
+    def get(self, id):        
         try:            
             conn = pyodbc.connect(common.db_connection_string)
         except conn.DatabaseError as e:
@@ -182,7 +181,10 @@ class Recipe(Resource):
    
         recipes = []
         cursor = conn.cursor()
-        cursor.execute("""
+
+        #connecting to sql Server database, execute() method takes no keyword arguments.
+        #So put the database query in a string first.
+        queryStr = """
         select  f.ID,
         f.Serve_Date,
         f.Meal_Number,
@@ -228,8 +230,9 @@ class Recipe(Resource):
         f.Protein_DV,
         f.Update_Date
         from ForecastedRecipes as f
-        join Locations as l on l.location_number = f.location_number where f.ID =  :myID
-        """, myID=id)
+        join Locations as l on l.location_number = f.location_number where f.ID =  """ + id
+
+        cursor.execute(queryStr)
 
         for row in cursor:                
             #this creates a dict out of the array of values
