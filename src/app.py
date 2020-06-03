@@ -19,7 +19,6 @@ class Health(Resource):
         conn = pyodbc.connect(common.db_connection_string)
        
         cursor = conn.cursor()
-        #cursor.execute("SELECT TOP (10) Location_Number FROM foodpro.dbo.Locations")
         cursor.execute("SELECT TOP (10) Location_Number FROM Locations")        
 
         retStr = ""
@@ -43,8 +42,7 @@ class Locations(Resource):
     def get(self):
 
         try:            
-            conn = pyodbc.connect(common.db_connection_string)            
-            #conn = pyodbc.connect('driver={%s};server=%s;database=%s;uid=%s;pwd=%s' % (common.driver, common.server, common.db, common.user, common.password))
+            conn = pyodbc.connect(common.db_connection_string)
         except conn.DatabaseError as e:
             obj, = e.args
             print(("Context:", obj.context))
@@ -58,12 +56,7 @@ class Locations(Resource):
         for row in cursor:                
             #this creates a dict out of the array of values
             locations.append({common.columns(cursor)[i]:row[i] for i in range(0, len(row))})
-
-        #another syntxt
-        #columns = [column[0] for column in cursor.description]
-        #for row in cursor.fetchall():
-        #    locations.append(dict(zip(columns, row)))
-
+        
         conn.close()
         return json.loads(json.dumps(locations, indent=4, sort_keys=True, default=str))
 
