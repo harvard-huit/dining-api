@@ -235,6 +235,7 @@ class Recipe(Resource):
         return json.loads(json.dumps(recipes, indent=4, sort_keys=True, default=str))
 
 
-
+if __name__ == '__main__':
+    app.run(debug=False)
 
 
