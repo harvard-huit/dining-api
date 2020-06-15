@@ -27,19 +27,14 @@ RUN \
 	yum -y install gcc-c++ python${pythonmajor}-devel unixODBC-devel; \
 	yum clean all
 
-# Install Python application and change working directory to it.
-COPY src /opt/api
-WORKDIR /opt/api
+# Install Python application.
+COPY src /opt/api/src/
+COPY gunicorn.sh /opt/api/
 
 # Install the Python modules our API application uses.
+WORKDIR /opt/api/src
 RUN pip3 install -r requirements.txt
 
-# Needed for boto to be able to find the parameter store
-ENV AWS_DEFAULT_REGION us-east-1
-
-
-# make sure the stack env var is picked up for use in the build
-ARG STACK
-
-# Start app.py from our src folder.
-ENTRYPOINT [ "python3", "-u", "app.py" ]
+# Start gunicorn via a shell script in our src folder.
+WORKDIR /opt/api
+ENTRYPOINT /bin/sh -c ./gunicorn.sh
