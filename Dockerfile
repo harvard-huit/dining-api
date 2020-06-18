@@ -35,6 +35,10 @@ COPY gunicorn.sh /opt/api/
 WORKDIR /opt/api/src
 RUN pip3 install -r requirements.txt
 
+# Needed for boto to be able to find the parameter store
+ENV AWS_DEFAULT_REGION us-east-1
+
+
 # Start gunicorn via a shell script in our src folder.
 WORKDIR /opt/api
 ENTRYPOINT /bin/sh -c ./gunicorn.sh

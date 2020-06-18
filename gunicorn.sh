@@ -30,7 +30,7 @@ case "$STACK" in
 esac
 
 # This is the base path and is used by gunicorn.
-export SCRIPT_NAME=/dining-api
+export SCRIPT_NAME=/ats/dining
 
 
 # Run gunicorn, starting "app:app", i.e. in 'app.py', find the application in 
