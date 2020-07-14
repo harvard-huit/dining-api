@@ -12,7 +12,9 @@ import configparser
 app = Flask(__name__)
 api = Api(app)
 
-
+#--------------------------------------------------------------------------------------------
+# Model Objects 
+#--------------------------------------------------------------------------------------------
 monitor_health_pass_model = api.model("monitor_health_pass",
 	{
 		"status": fields.String(
@@ -46,7 +48,7 @@ db_connection_fail_model = api.model("db_connection_health_fail",
 			required=True
 		),
         "error": fields.String(
-			description="Error encountered", 
+			description="Database connection error encountered", 
             example="The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.",
 			required=True
 		)
@@ -54,8 +56,7 @@ db_connection_fail_model = api.model("db_connection_health_fail",
 )
 
 location_model = api.model("location", 
-	{	
-       
+	{       
         "location_name": fields.String(
 			description="Location Name", 
 			example="Barker Rotunda", 
@@ -76,10 +77,9 @@ location_list_model = api.model("location_list",
     ]
 )
 '''
-#Developer's notoes - confirm the order of the fields after having testing data
+
 event_model = api.model("event", 
-	{	
-       
+	{	       
         "meal_name": fields.String(
 			description="Name of the meal, like Breakfast/Lunch/Dinner. The top level grouping for a given location.", 
 			example="Breakfast", 
@@ -121,230 +121,231 @@ event_model = api.model("event",
 recipe_model = api.model("recipe", 
 	{	       
         "Sat_Fat_DV": fields.String(
-			description="", 
+			description="Sat Fat DV", 
 			example="0", 
 			required=True
 		),
         "Trans_Fat_DV": fields.String(
-			description="Location Number", 
+			description="Trans Fat DV", 
 			example="", 
 			required=False
 		),
         "Sugars_DV": fields.String(
-			description="", 
+			description="Sugars DV", 
 			example="0", 
 			required=True
 		),
         "Dietary_Fiber_DV": fields.String(
-			description="", 
+			description="Dietary Fiber DV", 
 			example="0", 
 			required=True
 		),
         "selling_price": fields.String(
-			description="", 
+			description="selling price", 
 			example="0.00", 
 			required=True
 		),
         "ID": fields.String(
-			description="", 
+			description="recipt ID", 
 			example="36297713", 
 			required=True
 		),
         "Menu_Category_Number": fields.String(
-			description="", 
+			description="Menu Category Number", 
 			example="23", 
 			required=True
 		),
         "Recipe_Product_Information": fields.String(
-			description="", 
+			description="Recipe Product Information", 
 			example="These less-processed oats retain more of their hull and therefore more of their nutritional value.", 
 			required=True
 		),
         "Cholesterol": fields.String(
-			description="", 
+			description="Cholesterol", 
 			example="0mg", 
 			required=True
 		),
         "portion_cost": fields.String(
-			description="", 
+			description="portion cost", 
 			example="0.00", 
 			required=True
 		),
         "Calories_From_Fat": fields.String(
-			description="", 
+			description="Calories From Fat", 
 			example="27", 
 			required=True
 		),
         "Sodium": fields.String(
-			description="", 
+			description="Sodium", 
 			example="14.8mg", 
 			required=True
 		),
         "Recipe_Web_Codes": fields.String(
-			description="", 
+			description="Recipe Web Codes", 
 			example="VGN WGRN VGT", 
 			required=True
 		),
         "Total_Fat": fields.String(
-			description="", 
+			description="Total Fat", 
 			example="3g", 
 			required=True
 		),
         "Recipe_Print_As_Name": fields.String(
-			description="", 
+			description="Recipe Print As Name", 
 			example="Kashi Pilaf", 
 			required=True
 		),
         "Sat_Fat": fields.String(
-			description="", 
+			description="Sat Fat", 
 			example="0g", 
 			required=True
 		),
         "Recipe_Print_As_Character": fields.String(
-			description="", 
+			description="Recipe Print As Character", 
 			example="", 
 			required=True
 		),
         "Recipe_Print_As_Color": fields.String(
-			description="", 
+			description="Recipe Print As Color", 
 			example="4194368", 
 			required=True
 		),
         "Total_Fat_DV": fields.String(
-			description="",
+			description="Total Fat DV",
 		    example="5", 
 			required=True
 		),
         "Serve_Date": fields.String(
-			description="", 
+			description="Serve Date", 
 			example="09/11/2017", 
 			required=True
 		),
         "Total_Carb": fields.String(
-			description="", 
+			description="Total Carb", 
 			example="29.6g", 
 			required=True
 		),
         "Cholesterol_DV": fields.String(
-			description="", 
+			description="Cholesterol DV", 
 			example="0", 
 			required=True
 		),
         "Allergens": fields.String(
-			description="", 
+			description="Allergens", 
 			example="Wheat ", 
 			required=True
 		),
         "Trans_Fat": fields.String(
-			description="", 
+			description="Trans Fat", 
 			example="0g", 
 			required=True
 		),
         "Service_Department": fields.String(
-			description="", 
+			description="Service Department", 
 			example="01", 
 			required=True
 		),
         "Catering_Department": fields.String(
-			description="", 
+			description="Catering Department", 
 			example="01", 
 			required=True
 		),
         "Location_Number": fields.String(
-			description="", 
+			description="Location Number", 
 			example="03", 
 			required=True
 		),
         "Sodium_DV": fields.String(
-			description="", 
+			description="Sodium DV", 
 			example="1", 
 			required=True
 		),
         "Sugars": fields.String(
-			description="", 
+			description="Sugars", 
 			example="0g", 
 			required=True
 		),
         "Serving_Size": fields.String(
-			description="", 
+			description="Serving Size", 
 			example="5 OZL", 
 			required=True
 		),
          "Meal_Name": fields.String(
-			description="", 
+			description="Meal Name", 
 			example="Breakfast", 
 			required=True
 		),
         "Total_Carb_DV": fields.String(
-			description="", 
+			description="Total Carb DV", 
 			example="10", 
 			required=True
 		),
         "Ingredient_List": fields.String(
-			description="", 
+			description="Ingredient List", 
 			example="7 Whole Grain Kashi Pilaf (Kashi Seven Whole Grains & Sesame® Pilaf (Whole: Oats Brown Rice Rye Hard Red Winter Wheat Triticale Buckwheat Barley Sesame Seeds).)", 
 			required=True
 		),
         "Update_Date": fields.String(
-			description="", 
+			description="Update Date", 
 			example="", 
 			required=True
 		),
         "Location_Name": fields.String(
-			description="", 
+			description="Location Name", 
 			example="Cronkhite Center", 
 			required=True
 		),
         "Recipe_Name": fields.String(
-			description="", 
+			description="Recipe Name", 
 			example="CEREAL KASHI PILAF VGN", 
 			required=True
 		),
         "Protein": fields.String(
-			description="", 
+			description="Protein", 
 			example="5.9g", 
 			required=True
 		),
         "Dietary_Fiber": fields.String(
-			description="", 
+			description="Dietary Fiber", 
 			example="5.9g", 
 			required=True
 		),
         "Protein_DV": fields.String(
-			description="", 
+			description="Protein DV", 
 			example="12", 
 			required=True
 		),
         "Meal_Number": fields.String(
-			description="", 
+			description="Meal Number", 
 			example="1", 
 			required=True
 		),
         "Calories": fields.String(
-			description="", 
+			description="Calories", 
 			example="167", 
 			required=True
 		),
         "Production_Department": fields.String(
-			description="", 
+			description="Production Department", 
 			example="01", 
 			required=True
 		),
         "Menu_Category_Name": fields.String(
-			description="", 
+			description="Menu Category Name", 
 			example="Make Your Own Bar", 
 			required=True
 		),
         "Recipe_Number": fields.String(
-			description="", 
+			description="Recipe Number", 
 			example="031001", 
 			required=True
 		)
 	}
-)    
-  
+)     
 
-
+#--------------------------------------------------------------------------------------------
+# /ats/dining/v1/monitor/health endpoint: Basic healthcheck
+#--------------------------------------------------------------------------------------------
 @api.route('/monitor/health')
 class Health(Resource):
     @api.doc(description='''<p>
@@ -366,8 +367,9 @@ Health check endpoint which returns a status 200 and status: Pass if the API is 
                 if row == None:
                     break
                 else:
-                    retStr = retStr + row.Location_Number
-            
+                    retStr = retStr + row.Location_Number            
+
+            conn.close()
 
             if retStr != "":
                     return jsonify(
@@ -383,13 +385,18 @@ Health check endpoint which returns a status 200 and status: Pass if the API is 
                 status = "FAIL",
                 error = str(err)
             ), 500)
-        conn.close()
-
+        
+'''
 @api.route('/monitor/driver')
 class Driver(Resource):
     def get(self):
         return pyodbc.drivers()
+'''
 
+#--------------------------------------------------------------------------------------------
+# /ats/dining/v1/locations endpoint:
+# Get all the locations
+#--------------------------------------------------------------------------------------------
 @api.route('/locations')
 class Locations(Resource):
     @api.doc(description='''<p>Get locations''')
@@ -401,8 +408,8 @@ class Locations(Resource):
             conn = pyodbc.connect(common.db_connection_string)
         except conn.DatabaseError as e:
             obj, = e.args
-            print(("Context:", obj.context))
-            print(("Message:", obj.message))
+            #print(("Context:", obj.context))
+            #print(("Message:", obj.message))
             #return "Error Connecting to the DB", 500
             return make_response(jsonify(
                         status = "FAIL",
@@ -422,6 +429,10 @@ class Locations(Resource):
         #return json.loads(json.dumps(locations, indent=4, sort_keys=True, default=str))       
         return make_response(jsonify(locations), 200)
 
+#--------------------------------------------------------------------------------------------
+# /ats/dining/v1/events endpoint:
+# Get the events based on the date and/or locationId
+#--------------------------------------------------------------------------------------------
 @api.route('/events')
 @api.param("locationId", description="locationId", required=False, example='03')
 @api.param("date", description="date", required=False, example='09/15/2017')
@@ -435,9 +446,6 @@ class Events(Resource):
             conn = pyodbc.connect(common.db_connection_string)
         except conn.DatabaseError as e:
             obj, = e.args
-            print(("Context:", obj.context))
-            print(("Message:", obj.message))
-            #return "Error Connecting to the DB", 500
             return make_response(jsonify(
                         status = "FAIL",
                         error = "Internal Server Error."
@@ -445,6 +453,7 @@ class Events(Resource):
    
         events = []
         cursor = conn.cursor()
+
         '''
         cursor.execute("""select f.meal_name,l.location_number,l.location_name,
         f.serve_date,f.menu_category_name,f.menu_category_number,f.meal_number
@@ -458,32 +467,25 @@ class Events(Resource):
         locationIdVal = request.args.get('locationId', default = None)
         dateVal = request.args.get('date', default = None)
 
+        queryStr = """select f.meal_name,l.location_number,l.location_name,
+            f.serve_date,f.menu_category_name,f.menu_category_number,f.meal_number
+            from forecastedrecipes as f
+            join locations as l on f.location_number = l.location_number"""
+        
+        groupOrderSTr = """group by f.meal_name, l.location_number, l.location_name, f.serve_date, f.meal_number, f.menu_category_name, f.menu_category_number
+        order by l.location_number"""
+
         if locationIdVal != None and dateVal != None:
-            queryStr = """select f.meal_name,l.location_number,l.location_name,
-            f.serve_date,f.menu_category_name,f.menu_category_number,f.meal_number
-            from forecastedrecipes as f
-            join locations as l on f.location_number = l.location_number
-            where l.location_number ='""" + locationIdVal + "' and f.serve_date = '" + dateVal + "'"
+            queryStr = queryStr + " where l.location_number ='" + locationIdVal + "' and f.serve_date = '" + dateVal + "'"
+            queryStr = queryStr + groupOrderSTr            
         elif locationIdVal != None:
-            queryStr = """select f.meal_name,l.location_number,l.location_name,
-            f.serve_date,f.menu_category_name,f.menu_category_number,f.meal_number
-            from forecastedrecipes as f
-            join locations as l on f.location_number = l.location_number
-            where l.location_number ='""" + locationIdVal + "'"
+            queryStr = queryStr + " where l.location_number ='" + locationIdVal + "'"
+            queryStr = queryStr + groupOrderSTr
         elif dateVal != None:
-            queryStr = """select f.meal_name,l.location_number,l.location_name,
-            f.serve_date,f.menu_category_name,f.menu_category_number,f.meal_number
-            from forecastedrecipes as f
-            join locations as l on f.location_number = l.location_number
-            where f.serve_date = '""" + dateVal + "'"
+            queryStr = queryStr + " where f.serve_date = '" + dateVal + "'"
+            queryStr = queryStr + groupOrderSTr
         else: 
-            queryStr = """select f.meal_name,l.location_number,l.location_name,
-            f.serve_date,f.menu_category_name,f.menu_category_number,f.meal_number
-            from forecastedrecipes as f
-            join locations as l on f.location_number = l.location_number
-            where 1=1
-            group by f.meal_name, l.location_number, l.location_name, f.serve_date, f.meal_number, f.menu_category_name, f.menu_category_number
-            order by l.location_number"""
+            queryStr = queryStr + " where 1=1 " + groupOrderSTr
         
         print(queryStr)
         cursor.execute(queryStr)
@@ -496,7 +498,10 @@ class Events(Resource):
         #return json.loads(json.dumps(events, indent=4, sort_keys=True, default=str))
         return make_response(jsonify(events), 200)
 
-
+#--------------------------------------------------------------------------------------------
+# /ats/dining/v1/recipes endpoint:
+# Get the events based on the date and/or locationId
+#--------------------------------------------------------------------------------------------
 @api.route('/recipes')
 @api.param("locationId", description="locationId", required=False, example='03')
 @api.param("date", description="date", required=False, example='09/15/2017')
@@ -632,7 +637,7 @@ class Recipes(Resource):
 
         print(queryStr)
         cursor.execute(queryStr)
-        
+
         for row in cursor:                
             #this creates a dict out of the array of values
             recipes.append({common.columns(cursor)[i]:row[i] for i in range(0, len(row))})
@@ -661,7 +666,7 @@ class Recipe(Resource):
                         error = "Internal Server Error."
                     ), 500)
    
-        recipes = []
+        #recipes = []
         cursor = conn.cursor()
 
         recipe = {}
@@ -716,11 +721,12 @@ class Recipe(Resource):
         from ForecastedRecipes as f
         join Locations as l on l.location_number = f.location_number where f.ID =  """ + id
 
+        print(queryStr)
         cursor.execute(queryStr)
 
         for row in cursor:                
             #this creates a dict out of the array of values
-            recipes.append({common.columns(cursor)[i]:row[i] for i in range(0, len(row))})
+            #recipes.append({common.columns(cursor)[i]:row[i] for i in range(0, len(row))})
             recipe = {common.columns(cursor)[i]:row[i] for i in range(0, len(row))}
         
         conn.close()
