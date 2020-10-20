@@ -377,13 +377,7 @@ Health check endpoint which returns a status 200 and status: Pass if the API is 
                 status = "FAIL",
                 error = str(err)
             ), 500)
-        
-'''
-@api.route('/monitor/driver')
-class Driver(Resource):
-    def get(self):
-        return pyodbc.drivers()
-'''
+
 
 #--------------------------------------------------------------------------------------------
 # /ats/dining/v1/locations endpoint:
