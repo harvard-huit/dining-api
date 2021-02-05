@@ -9,8 +9,19 @@ import boto3
 import pyodbc
 import configparser
 
+
+authorizations = {
+    'apikey': {
+        'type': 'apiKey',
+        'in': 'header',
+        'name': 'X-Api-Key'
+    }
+}
+
 app = Flask(__name__)
-api = Api(app)
+api = Api(app, version='v3', title='Dining API',
+    description='API for Dining menus, locations and events', authorizations=authorizations, security='apikey'
+)
 
 #--------------------------------------------------------------------------------------------
 # Model Objects 
@@ -386,6 +397,7 @@ Health check endpoint which returns a status 200 and status: Pass if the API is 
 @api.route('/locations')
 class Locations(Resource):
     @api.doc(description='''<p>Get locations''')
+    @common.apikey_required
     @api.response(200, 'Success', [location_model])
     @api.response(500, 'Internal Server Error', failure_model)
     def get(self):
@@ -422,6 +434,7 @@ class Locations(Resource):
 @api.param("date", description="date", required=False, example='09/15/2017')
 class Events(Resource):
     @api.doc(description='''<p>Get events''')
+    @common.apikey_required
     @api.response(200, 'Success', [event_model])
     @api.response(500, 'Internal Server Error', failure_model)
     def get(self):
@@ -482,6 +495,7 @@ class Events(Resource):
 @api.param("date", description="date", required=False, example='09/15/2017')
 class Recipes(Resource):
     @api.doc(description='''<p>Get recipes''')
+    @common.apikey_required
     @api.response(200, 'Success', [recipe_model])
     @api.response(500, 'Internal Server Error', failure_model)
     def get(self):
@@ -567,9 +581,10 @@ class Recipes(Resource):
             ), 500)
 
 
-@api.route('/recipe/<string:id>')
+@api.route('/recipes/<string:id>')
 class Recipe(Resource):
     @api.doc(description='''<p>Get a single recipe by id''')
+    @common.apikey_required
     @api.response(200, 'Success', recipe_model)
     @api.response(500, 'Internal Server Error', failure_model)    
     def get(self, id):        
