@@ -8,7 +8,7 @@ gunicorn --certfile=ssl/cert.pem --keyfile=ssl/key.pem --reload -b 0.0.0.0:9022 
 
 ## Deployments
 
-### Stage
+### Dev
 ```
 ./build-api.yml --extra-vars "target_app_name='dining-api' target_port='9022' aais_stack='dev'"
 
