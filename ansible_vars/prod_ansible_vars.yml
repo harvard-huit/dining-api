@@ -1,3 +1,7 @@
 target_app_secrets_ref:
-  - ECS_APIKEY: aais-ecs-dining-apikey-prod
-    DB_PWD: aais-foodpro
+    - ECS_APIKEY: 
+      DB_PWD: 
+      DB_USER: 
+      DB_INSTANCE: 
+      DB_HOST: 
+      DB_DRIVER: 

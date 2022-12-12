@@ -1,13 +1,12 @@
 from flask import Flask, request, jsonify, make_response
 from flask_restx import Resource, Api, fields, marshal
 import common
-import re
-import json
-import os
-import base64
+# import re
+# import json
+# import os
+# import base64
 import boto3
 import pyodbc
-import configparser
 
 
 authorizations = {
