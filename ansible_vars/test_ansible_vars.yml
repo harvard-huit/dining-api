@@ -1,3 +1,7 @@
 target_app_secrets_ref:
-  - ECS_APIKEY: aais-ecs-dining-apikey-dev
-    DB_PWD: aais-foodpro
+    - ECS_APIKEY: arn:aws:secretsmanager:us-east-1:001980101248:secret:aais-services-dining-api-nfiKo2:apikey::
+      DB_PWD: arn:aws:secretsmanager:us-east-1:001980101248:secret:aais-services-dining-api-nfiKo2:db_password::
+      DB_USER: arn:aws:secretsmanager:us-east-1:001980101248:secret:aais-services-dining-api-nfiKo2:db_user::
+      DB_INSTANCE: arn:aws:secretsmanager:us-east-1:001980101248:secret:aais-services-dining-api-nfiKo2:db_instance::
+      DB_HOST: arn:aws:secretsmanager:us-east-1:001980101248:secret:aais-services-dining-api-nfiKo2:db_host::
+      DB_DRIVER: arn:aws:secretsmanager:us-east-1:001980101248:secret:aais-services-dining-api-nfiKo2:db_driver::
