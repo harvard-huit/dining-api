@@ -1,0 +1,25 @@
+name: Build Code
+on:
+  push:
+    branches: [ dev ]
+  workflow_dispatch:
+
+env:
+  APIKEY: ${{ secrets.APIGEE_MIGRATION_CICD_KEY }}
+  
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  deploy:
+    name: check code
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Build
+        run: ./build.sh
