@@ -5,10 +5,8 @@ on:
   workflow_dispatch:
 
 env:
-  APIKEY: ${{ secrets.APIGEE_MIGRATION_CICD_KEY }}
   ARTIFACTORY_USER: ${{ secrets.ARTIFACTORY_USER }}
   ARTIFACTORY_PWD: ${{ secrets.ARTIFACTORY_PWD }}
-
 
 defaults:
   run:
