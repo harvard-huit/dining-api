@@ -4,6 +4,7 @@ APP_FOLDER="${PWD}"
 AAIS_HOME=${AAIS_HOME:-${HOME}/workshop/aais-ecs-infrastructure/}
 ECS_CONFIG=${HOME}/workshop/aais-services-config/aais_services_dev.yml
 
+# this option is curently needed in MacOS setups
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
 cd ${AAIS_HOME}
