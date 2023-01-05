@@ -19,7 +19,7 @@ target_app_zone: "test.ats.cloud.huit.harvard.edu"
 target_container_image: "artifactory.huit.harvard.edu/aais-docker-local/dining-api"
 target_app_version: "latest"
 
-target_container_credentials: "arn:aws:secretsmanager:us-east-1:001980101248:secret:aais-services-artifactory-creds-sEMlXO"
+target_container_credentials: "arn:aws:secretsmanager:us-east-1:001980101248:secret:aais-services-test-artifactory-creds-agFSEX"
 target_container_host: "artifactory.huit.harvard.edu:443"
 
 target_launchtype: "FARGATE"
