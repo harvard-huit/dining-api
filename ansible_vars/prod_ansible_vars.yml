@@ -1,7 +1,34 @@
+# Health
+health_check_interval: 60
+target_app_health_check_path: "/ats/dining"
+unhealthy_threshold_count: 5
+successful_response_codes: "200-299,300-399"
+
+target_desired_task_count: 2
+target_app_context: "/ats/dining"
+
+target_memory_mb: 1024
+target_cpu: 256
+
+target_port: 9022
+target_app_name: "dining-api"
+target_app_hostname: "dining-api"
+
+target_app_zone: "prod.ats.cloud.huit.harvard.edu"
+
+target_container_image: "artifactory.huit.harvard.edu/aais-docker-local/dining-api"
+target_app_version: "latest"
+
+target_container_credentials: "arn:aws:secretsmanager:us-east-1:949726781110:secret:aais-services-prod-artifactory-creds-BVDDOX"
+target_container_host: "artifactory.huit.harvard.edu:443"
+
+target_launchtype: "FARGATE"
+target_alb_name: "def"
+
 target_app_secrets_ref:
-    - ECS_APIKEY: 
-      DB_PWD: 
-      DB_USER: 
-      DB_INSTANCE: 
-      DB_HOST: 
-      DB_DRIVER: 
+    - ECS_APIKEY: "arn:aws:secretsmanager:us-east-1:949726781110:secret:aais-services-dining-api-SngCI5:apikey::"
+      DB_PWD: "arn:aws:secretsmanager:us-east-1:949726781110:secret:aais-services-dining-api-SngCI5:db_password::"
+      DB_USER: "arn:aws:secretsmanager:us-east-1:949726781110:secret:aais-services-dining-api-SngCI5:db_user::"
+      DB_INSTANCE: "arn:aws:secretsmanager:us-east-1:949726781110:secret:aais-services-dining-api-SngCI5:db_instance::"
+      DB_HOST: "arn:aws:secretsmanager:us-east-1:949726781110:secret:aais-services-dining-api-SngCI5:db_host::"
+      DB_DRIVER: "arn:aws:secretsmanager:us-east-1:949726781110:secret:aais-services-dining-api-SngCI5:db_driver::"
