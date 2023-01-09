@@ -14,7 +14,7 @@ target_port: 9022
 target_app_name: "dining-api"
 target_app_hostname: "dining-api"
 
-target_app_zone: "prod.ats.cloud.huit.harvard.edu"
+target_app_zone: "ats.cloud.huit.harvard.edu"
 
 target_container_image: "artifactory.huit.harvard.edu/aais-docker-local/dining-api"
 target_app_version: "latest"
