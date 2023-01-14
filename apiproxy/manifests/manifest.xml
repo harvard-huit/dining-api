@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Manifest name="manifest">
+    <Policies>
+        <VersionInfo resourceName="am-ecs-authorization-header" version="SHA-512:0e647232d582a7b886649b18aef1de9698b571a18e25c2710b1ff8306bb4b4037ff9a8b31de5dff4552d04a282286b4539d6b918457915c34ae013ca012d5b06"/>
+        <VersionInfo resourceName="fc-adex-auth" version="SHA-512:fa110f87e48a9bfc8f4935f0e9652201150fb672673ac2bd83bed8ecf44fc6e4ca132b6bfd51a0461f8ccf113a2f1bd3f1e8e8843c63efe8b18f3e014304a8b0"/>
+        <VersionInfo resourceName="kvmo-ecs-auth" version="SHA-512:c3b6f327011f94b3735db718b08e76e0b191e43f3b2afa2f51be3d1bdeed7c51f2cbe6c9893c1db13d7e6bfbf847b33195cbe80c798ef1b345b9749f9b75223f"/>
+        <VersionInfo resourceName="quota-monitor-health" version="SHA-512:165b3a8284edac31b45c84e96940bdd037fe46998231f927f2a38e1a39404a1a7a2a37cbf88b20cfc42f4a260b8bd5fd868b109ca760d2254dfdda74947dd408"/>
+        <VersionInfo resourceName="quota-rate-limiting" version="SHA-512:4cb89f5e2e92ec9f3e1459bbebe222e14aba439f0e573c39b26e3787f316ef2091587c77d41e9351a9c14d78afa4fb0671f7bd1b01b4ecc947b9f76c85da0430"/>
+    </Policies>
+    <ProxyEndpoints>
+        <VersionInfo resourceName="default" version="SHA-512:d24c500cff4253ba55f058f3f02576ea2d1b5139a368a64fc3f2276b1f4287c92edc4dfe3fd871f5bcd5e47307ce1e9a866f020245d49ad7eb1fc59a9bd77b9b"/>
+    </ProxyEndpoints>
+    <Resources/>
+    <SharedFlows/>
+    <TargetEndpoints>
+        <VersionInfo resourceName="dev" version="SHA-512:ba7f298b900b2fbf6f142393c6bcd56af5f99a388ebdc518ea07cd2fbad683329151e2be9edb2bbd4a582e9b7655c7948ab0feee402dd23fa14df3227685dbef"/>
+        <VersionInfo resourceName="prod" version="SHA-512:b7f39d761368170b1e6b01ba74fc422352d87f137297731dedacf5b95f37487c6583a064bddac76cd6d85299e3cf4b72c720827e4a81a55b5322d36c58513542"/>
+        <VersionInfo resourceName="stage" version="SHA-512:8a8c4648c9ae5a0924891671ee205a71ea0505b211cfa1998b8c00d8adc4f3603cd18a29fc004071a3c227baa7b6ab475d83cdf72806fff7e4f728b71015f5a3"/>
+        <VersionInfo resourceName="test" version="SHA-512:038d149e02be11df6208eac9eb7b4b93c33a7f036315090b9230ccaef0997522b2d6c43f2d9aebcb687bb1c05a2978eaea9c91309d043a37de41d1623d03c7cb"/>
+    </TargetEndpoints>
+</Manifest>

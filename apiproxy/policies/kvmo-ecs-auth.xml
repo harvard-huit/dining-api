@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<KeyValueMapOperations async="false" continueOnError="false" enabled="true" name="kvmo-ecs-auth" mapIdentifier="ats-dining">
+    <DisplayName>kvmo-ecs-auth</DisplayName>
+    <Scope>apiproxy</Scope>
+    <Get assignTo="private.ecsAuth" index="1">
+        <Key>
+            <Parameter>apigee-ecs-auth</Parameter>
+        </Key>
+    </Get>
+</KeyValueMapOperations>
