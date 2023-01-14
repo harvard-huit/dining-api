@@ -25,6 +25,7 @@ jobs:
     name: check code
     runs-on: ubuntu-latest
     container:
+      image: amazonlinux:latest
       options: --user root
 
     steps:
