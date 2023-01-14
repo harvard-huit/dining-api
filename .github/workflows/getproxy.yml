@@ -24,6 +24,8 @@ jobs:
   deploy:
     name: check code
     runs-on: ubuntu-latest
+    container:
+      options: --user root
 
     steps:
       - name: Checkout
