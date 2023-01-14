@@ -24,9 +24,9 @@ jobs:
   deploy:
     name: check code
     runs-on: ubuntu-latest
-    container:
-      image: amazonlinux:2
-      options: --user root
+    # container:
+    #   image: amazonlinux:2
+    #   options: --user root
 
     steps:
       - name: Cleanup
