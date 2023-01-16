@@ -22,6 +22,16 @@
         <Response/>
     </PreFlow>
     <Flows>
+        <Flow name="OPTIONS_CORS_Preflight">
+            <Description>Resource to handle CORS preflight requests</Description>
+            <Request/>
+            <Response>
+                <Step>
+                    <Name>am-add-cors</Name>
+                </Step>
+            </Response>
+            <Condition>request.verb == "OPTIONS" AND request.header.origin != null AND request.header.Access-Control-Request-Method != null</Condition>
+        </Flow>
         <Flow name="get_locations">
             <Description>get locations</Description>
             <Request/>
@@ -70,6 +80,9 @@
             <Property name="request.streaming.enabled">true</Property>
         </Properties>
     </HTTPProxyConnection>
+    <RouteRule name="none">
+        <Condition>(request.verb = "OPTIONS")</Condition>
+    </RouteRule>
     <RouteRule name="prod">
         <TargetEndpoint>prod</TargetEndpoint>
         <Condition>(environment.name = "prod")</Condition>

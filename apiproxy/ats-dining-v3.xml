@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="1" name="ats-dining-v3">
+<APIProxy revision="2" name="ats-dining-v3">
     <Basepaths>/ats/dining/v3</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1603383183739</CreatedAt>
-    <CreatedBy>sarah_luo@harvard.edu</CreatedBy>
+    <CreatedAt>1673732364999</CreatedAt>
+    <CreatedBy>jcleveng@fas.harvard.edu</CreatedBy>
     <Description>dining API querying Campus Services dining prod database</Description>
     <DisplayName>ats-dining-v3</DisplayName>
-    <LastModifiedAt>1673718974172</LastModifiedAt>
+    <LastModifiedAt>1673732364999</LastModifiedAt>
     <LastModifiedBy>jcleveng@fas.harvard.edu</LastModifiedBy>
-    <ManifestVersion>SHA-512:558b64b43d75ddf9905d69c39656e6c95d0c5f0174e0cb3baeb4cfec6ff7d80ff935cb78db62054f9e170a0e53ee2a412d3ebf1e27f783c1cbd88b7af13cb625:us-east-1</ManifestVersion>
+    <ManifestVersion>SHA-512:07c63beed6c4c926d8dd7b0275f219f6644de72a407735c1091796025708ca6b60902dc85bc97ea92f25f41f6b6243a9e8c6197236cf885c4bf0020065ebb5e1:us-east-1</ManifestVersion>
     <Policies>
+        <Policy>am-add-cors</Policy>
         <Policy>am-ecs-authorization-header</Policy>
         <Policy>fc-adex-auth</Policy>
         <Policy>kvmo-ecs-auth</Policy>
