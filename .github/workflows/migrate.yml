@@ -20,7 +20,7 @@ env:
   BUILDTAG: ${{ github.event.inputs.version }} # optional, defaults to "vx.x.x"
   COMMENT: This was done with a github action # optional, defaults to "CI-CD"
   PROXY_NAME: ats-dining-v3 # required
-  PRODUCT_NAME: ats-dining-v3 # optional
+  PRODUCT_NAME: ats-dining # optional
   SPEC_NAME: ats-dining-v3 # optional
   APIKEY: ${{ secrets.APIGEE_MIGRATION_CICD_KEY }} # required
   # for the tests
