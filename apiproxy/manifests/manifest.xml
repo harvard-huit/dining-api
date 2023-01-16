@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Manifest name="manifest">
     <Policies>
+        <VersionInfo resourceName="am-add-cors" version="SHA-512:cb6384d72ad1d023a28205b91caa276baf048b762a8f45857de1893ca33329850617cc9c4c79337f9260c9f4b5a1460073de6e5642947b56bf954ffe7239df7d"/>
         <VersionInfo resourceName="am-ecs-authorization-header" version="SHA-512:0e647232d582a7b886649b18aef1de9698b571a18e25c2710b1ff8306bb4b4037ff9a8b31de5dff4552d04a282286b4539d6b918457915c34ae013ca012d5b06"/>
         <VersionInfo resourceName="fc-adex-auth" version="SHA-512:fa110f87e48a9bfc8f4935f0e9652201150fb672673ac2bd83bed8ecf44fc6e4ca132b6bfd51a0461f8ccf113a2f1bd3f1e8e8843c63efe8b18f3e014304a8b0"/>
         <VersionInfo resourceName="kvmo-ecs-auth" version="SHA-512:c3b6f327011f94b3735db718b08e76e0b191e43f3b2afa2f51be3d1bdeed7c51f2cbe6c9893c1db13d7e6bfbf847b33195cbe80c798ef1b345b9749f9b75223f"/>
@@ -8,14 +9,14 @@
         <VersionInfo resourceName="quota-rate-limiting" version="SHA-512:4cb89f5e2e92ec9f3e1459bbebe222e14aba439f0e573c39b26e3787f316ef2091587c77d41e9351a9c14d78afa4fb0671f7bd1b01b4ecc947b9f76c85da0430"/>
     </Policies>
     <ProxyEndpoints>
-        <VersionInfo resourceName="default" version="SHA-512:d24c500cff4253ba55f058f3f02576ea2d1b5139a368a64fc3f2276b1f4287c92edc4dfe3fd871f5bcd5e47307ce1e9a866f020245d49ad7eb1fc59a9bd77b9b"/>
+        <VersionInfo resourceName="default" version="SHA-512:cc9e5a385c41faa5c6d267dec150e3d1364338da0cb22f4b38a8efd18b16b4c8ebefe5509e6b384aca6e127eafbbdf960679fe3b00fbc5da2c5a0d84c7e1690b"/>
     </ProxyEndpoints>
     <Resources/>
     <SharedFlows/>
     <TargetEndpoints>
-        <VersionInfo resourceName="dev" version="SHA-512:ba7f298b900b2fbf6f142393c6bcd56af5f99a388ebdc518ea07cd2fbad683329151e2be9edb2bbd4a582e9b7655c7948ab0feee402dd23fa14df3227685dbef"/>
-        <VersionInfo resourceName="prod" version="SHA-512:b7f39d761368170b1e6b01ba74fc422352d87f137297731dedacf5b95f37487c6583a064bddac76cd6d85299e3cf4b72c720827e4a81a55b5322d36c58513542"/>
-        <VersionInfo resourceName="stage" version="SHA-512:8a8c4648c9ae5a0924891671ee205a71ea0505b211cfa1998b8c00d8adc4f3603cd18a29fc004071a3c227baa7b6ab475d83cdf72806fff7e4f728b71015f5a3"/>
-        <VersionInfo resourceName="test" version="SHA-512:038d149e02be11df6208eac9eb7b4b93c33a7f036315090b9230ccaef0997522b2d6c43f2d9aebcb687bb1c05a2978eaea9c91309d043a37de41d1623d03c7cb"/>
+        <VersionInfo resourceName="dev" version="SHA-512:0960ea10b16037b62a40c93967d4a3b87c994dcea71c8867d5134739872db4aa8b52ed11fb3860fb4faf93fe2efda414a0a31813d6ccb248cdc23a80a8fc3be4"/>
+        <VersionInfo resourceName="prod" version="SHA-512:64f6bb103d2ed3990499740116fbcf95e222e3bab761562a23df7148b2183f42cb566666115b1cce38690e6a981e9e691ee51a770d550aec2634c50f1ea6e41f"/>
+        <VersionInfo resourceName="stage" version="SHA-512:f2c8a849e748c5e187e515ae7fa40847273ce8c9fbb419953e8ccb65ec53ec751a0d30368169e6191c288c740f0333c2036f819ca2be41953d4b10053298a57c"/>
+        <VersionInfo resourceName="test" version="SHA-512:24581ab58740c120381d2f2c9dd88818948e9f915cf1ee6e62eae5e3c8daf100358679f23c50ef49b3cc13f4c7e0036809a09ffdc1a1a335a8be8f95ee31293a"/>
     </TargetEndpoints>
 </Manifest>
