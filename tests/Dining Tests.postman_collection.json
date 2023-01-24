@@ -1,0 +1,265 @@
+{
+	"info": {
+		"_postman_id": "216c8c9e-24c7-ee41-4968-ce95b39e1f50",
+		"name": "Dining Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2913531"
+	},
+	"item": [
+		{
+			"name": "events",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Total is greater than 1\", function(){",
+							"    pm.expect(pm.response.json().length).to.be.above(1)",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 400ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{apikey}}",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "x-api-key",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{host}}/ats/dining/v3/events?locationId=54",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"ats",
+						"dining",
+						"v3",
+						"events"
+					],
+					"query": [
+						{
+							"key": "locationId",
+							"value": "54"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "locations",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 300ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(300);",
+							"});",
+							"",
+							"pm.test(\"Total is 23: \" + pm.response.json().length, function(){",
+							"    pm.expect(pm.response.json().length).to.equal(23);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{apikey}}",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "x-api-key",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{host}}/ats/dining/v3/locations",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"ats",
+						"dining",
+						"v3",
+						"locations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "all recipes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 60s\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(60000);",
+							"});",
+							"",
+							"pm.test(\"Total is greater than 100\", function(){",
+							"    pm.expect(pm.response.json().length).to.be.above(100)",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{apikey}}",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "x-api-key",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{host}}/ats/dining/v3/recipes",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"ats",
+						"dining",
+						"v3",
+						"recipes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "recipes location 03",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 2500ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(2500);",
+							"});",
+							"",
+							"pm.test(\"All have location_number of 54\", function(){",
+							"    pm.response.json().each(function(item){",
+							"        pm.expect(item.Location_Number).to.equal(\"54\");",
+							"    });",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "{{apikey}}",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "x-api-key",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://{{host}}/ats/dining/v3/recipes?locationId=54",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"ats",
+						"dining",
+						"v3",
+						"recipes"
+					],
+					"query": [
+						{
+							"key": "locationId",
+							"value": "54"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

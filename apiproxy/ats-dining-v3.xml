@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<APIProxy revision="2" name="ats-dining-v3">
+    <Basepaths>/ats/dining/v3</Basepaths>
+    <ConfigurationVersion majorVersion="4" minorVersion="0"/>
+    <CreatedAt>1673732364999</CreatedAt>
+    <CreatedBy>jcleveng@fas.harvard.edu</CreatedBy>
+    <Description>dining API querying Campus Services dining prod database</Description>
+    <DisplayName>ats-dining-v3</DisplayName>
+    <LastModifiedAt>1673732364999</LastModifiedAt>
+    <LastModifiedBy>jcleveng@fas.harvard.edu</LastModifiedBy>
+    <ManifestVersion>SHA-512:07c63beed6c4c926d8dd7b0275f219f6644de72a407735c1091796025708ca6b60902dc85bc97ea92f25f41f6b6243a9e8c6197236cf885c4bf0020065ebb5e1:us-east-1</ManifestVersion>
+    <Policies>
+        <Policy>am-add-cors</Policy>
+        <Policy>am-ecs-authorization-header</Policy>
+        <Policy>fc-adex-auth</Policy>
+        <Policy>kvmo-ecs-auth</Policy>
+        <Policy>quota-monitor-health</Policy>
+        <Policy>quota-rate-limiting</Policy>
+    </Policies>
+    <ProxyEndpoints>
+        <ProxyEndpoint>default</ProxyEndpoint>
+    </ProxyEndpoints>
+    <Resources/>
+    <Spec></Spec>
+    <TargetServers/>
+    <TargetEndpoints>
+        <TargetEndpoint>dev</TargetEndpoint>
+        <TargetEndpoint>prod</TargetEndpoint>
+        <TargetEndpoint>stage</TargetEndpoint>
+        <TargetEndpoint>test</TargetEndpoint>
+    </TargetEndpoints>
+</APIProxy>

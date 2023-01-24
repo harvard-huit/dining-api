@@ -1,0 +1,70 @@
+name: Deploy
+on:
+  # push:
+  #   branches: [ dev ]
+  workflow_dispatch:
+    inputs:
+      environment: 
+        # Note: choice type is not supported by our gh yet, it falls back to 'string'
+        # eventually this feature will get to us and this will provide a dropdown
+        type: choice
+        default: 'dev'
+        options:
+          - 'dev'
+          - 'test'
+          - 'stage'
+          - 'prod'
+        required: true
+
+env:
+  AWS_REGION: us-east-1
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  deploy:
+    name: Deploy ${{ github.event.inputs.environment }}
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Login to AWS with a service account / iam user
+        # uses: aws-actions/configure-aws-credentials@13d241b293754004c80624b5567555c4a39ffbe3
+        uses: HUIT/configure-aws-credentials@13d241b293754004c80624b5567555c4a39ffbe3
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID_NONPROD }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_NONPROD }}
+          aws-region: ${{ env.AWS_REGION }}
+          # The AAIS deploy action will assume the deploy role
+          # role-to-assume: 'arn:aws:iam::${{ env.account }}:role/AutomationDeployRole'
+          # role-duration-seconds: 1200
+          # role-session-name: DiningApiDeploySession
+          # role-skip-session-tagging: true
+          # role-external-id: ${{ secrets.EXTERNAL_ID }}
+
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          path: ./dining-api
+
+      # Checking out the cluster config to provide it for the Deploy Action
+      - name: Checkout cluster config
+        uses: actions/checkout@v2
+        with:
+          repository: HUIT/aais-services-config
+          path: ./aais-services-config
+
+      - name: Run AAIS Deploy Container Action
+        uses: HUIT/aais-ecs-deploy-action@HEAD
+        with:
+          # Required
+          common_config: aais-services-config/aais_services_${{ github.event.inputs.environment }}.yml
+          # Required -- this token is linked to the user associated with the run
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # Optional
+          #   this needs to match the directory the main repository was checked out into
+          #   if the checkout was done without a path, this is not needed
+          app_root: dining-api
+ 

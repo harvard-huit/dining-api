@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ProxyEndpoint name="default">
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Name>fc-adex-auth</Name>
+                <Condition>!(((proxy.pathsuffix MatchesPath "/monitor/health") and (request.verb = "GET")) or (request.verb = "OPTIONS"))</Condition>
+            </Step>
+            <Step>
+                <Name>quota-rate-limiting</Name>
+                <Condition>!(((proxy.pathsuffix MatchesPath "/monitor/health") and (request.verb = "GET")) or (request.verb = "OPTIONS"))</Condition>
+            </Step>
+            <Step>
+                <Name>kvmo-ecs-auth</Name>
+                <Condition>!(((proxy.pathsuffix MatchesPath "/monitor/health") and (request.verb = "GET")) or (request.verb = "OPTIONS"))</Condition>
+            </Step>
+            <Step>
+                <Name>am-ecs-authorization-header</Name>
+                <Condition>!(((proxy.pathsuffix MatchesPath "/monitor/health") and (request.verb = "GET")) or (request.verb = "OPTIONS"))</Condition>
+            </Step>
+        </Request>
+        <Response/>
+    </PreFlow>
+    <Flows>
+        <Flow name="OPTIONS_CORS_Preflight">
+            <Description>Resource to handle CORS preflight requests</Description>
+            <Request/>
+            <Response>
+                <Step>
+                    <Name>am-add-cors</Name>
+                </Step>
+            </Response>
+            <Condition>request.verb == "OPTIONS" AND request.header.origin != null AND request.header.Access-Control-Request-Method != null</Condition>
+        </Flow>
+        <Flow name="get_locations">
+            <Description>get locations</Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/locations") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="get_events">
+            <Description>get events</Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/events") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="get_recipes">
+            <Description>get recipes</Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/recipes") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="get_recipe">
+            <Description>get recipe</Description>
+            <Request/>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/recipes/") and (request.verb = "GET")</Condition>
+        </Flow>
+        <Flow name="get_api_monitor">
+            <Description>Health check endpoint which returns a status 200 and status: Pass if the API is up and responsive</Description>
+            <Request>
+                <Step>
+                    <Name>quota-monitor-health</Name>
+                </Step>
+            </Request>
+            <Response/>
+            <Condition>(proxy.pathsuffix MatchesPath "/monitor/health") and (request.verb = "GET")</Condition>
+        </Flow>
+    </Flows>
+    <PostFlow name="PostFlow">
+        <Request/>
+        <Response/>
+    </PostFlow>
+    <HTTPProxyConnection>
+        <BasePath>/ats/dining/v3</BasePath>
+        <VirtualHost>go</VirtualHost>
+        <VirtualHost>secure</VirtualHost>
+        <Properties>
+            <Property name="response.streaming.enabled">true</Property>
+            <Property name="request.streaming.enabled">true</Property>
+        </Properties>
+    </HTTPProxyConnection>
+    <RouteRule name="none">
+        <Condition>(request.verb = "OPTIONS")</Condition>
+    </RouteRule>
+    <RouteRule name="prod">
+        <TargetEndpoint>prod</TargetEndpoint>
+        <Condition>(environment.name = "prod")</Condition>
+    </RouteRule>
+    <RouteRule name="stage">
+        <TargetEndpoint>stage</TargetEndpoint>
+        <Condition>(environment.name = "stage") or (request.queryparam.env = "stage")</Condition>
+    </RouteRule>
+    <RouteRule name="test">
+        <TargetEndpoint>test</TargetEndpoint>
+        <Condition>(environment.name = "test") or (request.queryparam.env = "test")</Condition>
+    </RouteRule>
+    <RouteRule name="dev">
+        <TargetEndpoint>dev</TargetEndpoint>
+        <Condition>environment.name = "dev"</Condition>
+    </RouteRule>
+</ProxyEndpoint>

@@ -1,0 +1,45 @@
+name: Get Apigee Code
+on:
+  schedule:
+    - cron: '0 20 * * *' # every day at 8pm
+  # push:
+  #   branches: [ dev ]
+  workflow_dispatch:
+
+env:
+  HOST: go.apis.huit.harvard.edu
+  PROXY: ats-dining-v3
+  SPEC: ats-dining-v3
+  APIKEY: ${{ secrets.APIGEE_MIGRATION_CICD_KEY }}
+  USER: JaZahn Clevenger # optional, but nice
+  EMAIL: jcleveng@fas.harvard.edu # optional, but nice
+  BRANCH: dev # optional, default is dev
+  COLLECTION: tests/Dining Tests.postman_collection.json
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  deploy:
+    name: check code
+    runs-on: ubuntu-latest
+    # container:
+    #   image: amazonlinux:2
+    #   options: --user root
+
+    steps:
+      - name: Cleanup
+        uses: HUIT/clean-action@HEAD
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Check and update code
+        uses: HUIT/apigee-get-proxy-action@v1.0.0
+
+      - name: Testing Dev
+        uses: HUIT/postman-testing-action@v1.0.1
+        with: 
+          host: go.dev.apis.huit.harvard.edu
+          apikey: ${{ secrets.DEV_TESTING_APIKEY }}

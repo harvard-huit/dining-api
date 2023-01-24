@@ -1,0 +1,87 @@
+name: Apigee Migration
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        type: string
+        description: something like v3.x.x
+        required: false
+      environment:
+        type: choice
+        description: stage or prod stage goes from dev to stage, prod goes from stage to prod
+        options:
+          - stage
+          - prod
+        default: stage
+        required: true
+
+env:
+  STACK: ${{ github.event.inputs.environment }} # optional, defaults to "stage"
+  BUILDTAG: ${{ github.event.inputs.version }} # optional, defaults to "vx.x.x"
+  COMMENT: This was done with a github action # optional, defaults to "CI-CD"
+  PROXY_NAME: ats-dining-v3 # required
+  PRODUCT_NAME: ats-dining # optional
+  SPEC_NAME: ats-dining-v3 # optional
+  APIKEY: ${{ secrets.APIGEE_MIGRATION_CICD_KEY }} # required
+  # for the tests
+  COLLECTION: tests/Dining Tests.postman_collection.json
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  migrate_stage:
+    name: Migrate to Stage
+    if: ${{ github.event.inputs.environment == 'stage' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set stage env
+        run: |
+          echo "STACK=stage"
+
+      - name: Test Dev
+        uses: HUIT/postman-testing-action@v1.0.1
+        with: 
+          host: go.dev.apis.huit.harvard.edu
+          apikey: ${{ secrets.DEV_TESTING_APIKEY }}
+
+      - name: Migrate to Stage
+        if: ${{ success() }}
+        uses: HUIT/apigee-migrate-action@v1.0.1
+
+      - name: Test Stage
+        if: ${{ success() }}
+        uses: HUIT/postman-testing-action@v1.0.1
+        with: 
+          host: go.stage.apis.huit.harvard.edu
+          apikey: ${{ secrets.STAGE_TESTING_APIKEY }}
+
+  migrate_prod:
+    name: Migrate to Prod
+    if: ${{ github.event.inputs.environment == 'prod' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set prod env
+        run: |
+          echo "STACK=prod"
+
+      - name: Test Stage
+        uses: HUIT/postman-testing-action@v1.0.1
+        with: 
+          host: go.stage.apis.huit.harvard.edu
+          apikey: ${{ secrets.STAGE_TESTING_APIKEY }}
+
+      - name: Migrate to Prod 
+        uses: HUIT/apigee-migrate-action@v1.0.1
+
+      - name: Test Prod
+        if: ${{ success() }}
+        uses: HUIT/postman-testing-action@v1.0.1
+        with: 
+          host: go.apis.huit.harvard.edu
+          apikey: ${{ secrets.PROD_TESTING_APIKEY }}
