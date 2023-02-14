@@ -1,26 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="2" name="ats-dining-v3">
+<APIProxy revision="3" name="ats-dining-v3">
     <Basepaths>/ats/dining/v3</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
-    <CreatedAt>1673732364999</CreatedAt>
-    <CreatedBy>jcleveng@fas.harvard.edu</CreatedBy>
+    <CreatedAt>1603383183739</CreatedAt>
+    <CreatedBy>sarah_luo@harvard.edu</CreatedBy>
     <Description>dining API querying Campus Services dining prod database</Description>
     <DisplayName>ats-dining-v3</DisplayName>
-    <LastModifiedAt>1673732364999</LastModifiedAt>
+    <LastModifiedAt>1676401729673</LastModifiedAt>
     <LastModifiedBy>jcleveng@fas.harvard.edu</LastModifiedBy>
-    <ManifestVersion>SHA-512:07c63beed6c4c926d8dd7b0275f219f6644de72a407735c1091796025708ca6b60902dc85bc97ea92f25f41f6b6243a9e8c6197236cf885c4bf0020065ebb5e1:us-east-1</ManifestVersion>
+    <ManifestVersion>SHA-512:54aec8a72bea3853765054ab06bf8a382aa3cf380f3cbc0aef6d5e6bc91d10170a6968399264de068d4ba53226dc22f9fb4add27540d4bf3e20d2a87d1a57297:us-east-1</ManifestVersion>
     <Policies>
         <Policy>am-add-cors</Policy>
         <Policy>am-ecs-authorization-header</Policy>
+        <Policy>ats-splunk-logging-sf-test-1</Policy>
         <Policy>fc-adex-auth</Policy>
         <Policy>kvmo-ecs-auth</Policy>
         <Policy>quota-monitor-health</Policy>
         <Policy>quota-rate-limiting</Policy>
+        <Policy>test</Policy>
     </Policies>
     <ProxyEndpoints>
         <ProxyEndpoint>default</ProxyEndpoint>
     </ProxyEndpoints>
-    <Resources/>
+    <Resources>
+        <Resource>jsc://test.js</Resource>
+    </Resources>
     <Spec></Spec>
     <TargetServers/>
     <TargetEndpoints>
