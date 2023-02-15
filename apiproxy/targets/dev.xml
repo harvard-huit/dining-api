@@ -13,9 +13,6 @@
     <PostFlow name="PostFlow">
         <Request/>
         <Response>
-            <Step>
-                <Name>test</Name>
-            </Step>
         </Response>
     </PostFlow>
     <Flows/>
