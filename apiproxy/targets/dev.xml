@@ -12,7 +12,8 @@
     </PreFlow>
     <PostFlow name="PostFlow">
         <Request/>
-        <Response/>
+        <Response>
+        </Response>
     </PostFlow>
     <Flows/>
     <HTTPTargetConnection>

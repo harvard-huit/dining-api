@@ -2,11 +2,11 @@
 <Quota async="false" continueOnError="false" enabled="true" name="quota-monitor-health" type="calendar">
     <DisplayName>quota-monitor-health</DisplayName>
     <Properties/>
-    <Allow count="2000" countRef="request.header.allowed_quota"/>
+    <Allow count="100" countRef="request.header.allowed_quota"/>
     <Interval ref="request.header.quota_count">1</Interval>
     <Distributed>false</Distributed>
     <Synchronous>false</Synchronous>
-    <TimeUnit ref="request.header.quota_timeout">month</TimeUnit>
+    <TimeUnit ref="request.header.quota_timeout">hour</TimeUnit>
     <StartTime>2020-9-14 12:00:00</StartTime>
     <AsynchronousConfiguration>
         <SyncIntervalInSeconds>20</SyncIntervalInSeconds>
