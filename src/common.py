@@ -23,7 +23,6 @@ def getDBConnection(password):
     user = os.getenv('DB_USER')
 
     dbConnectionString = "driver={" + str(driver) + "};server=" + str(server) + ";database=" + str(db) + ";uid=" + str(user) + ";pwd=" + str(password)
-    print(dbConnectionString)
     return dbConnectionString
 
 
